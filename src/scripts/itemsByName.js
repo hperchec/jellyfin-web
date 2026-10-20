@@ -33,6 +33,13 @@ function renderItems(page, item, user) {
         });
     }
 
+    if (item.VideoCount) {
+        sections.push({
+            name: globalize.translate('Videos'),
+            type: 'Video'
+        });
+    }
+
     if (item.SeriesCount) {
         sections.push({
             name: globalize.translate('Shows'),
@@ -148,6 +155,24 @@ function renderSection(item, element, type, user) {
                 overlayMoreButton: true,
                 overlayText: false,
                 showYear: true
+            });
+            break;
+
+        case 'Video':
+            loadItems(element, item, type, {
+                MediaTypes: '',
+                IncludeItemTypes: 'Video',
+                PersonTypes: '',
+                ArtistIds: '',
+                AlbumArtistIds: '',
+                // Limit: 50,
+                SortOrder: 'Descending,Descending,Ascending',
+                SortBy: 'PremiereDate,ProductionYear,SortName'
+            }, {
+                shape: 'overflowBackdrop',
+                showTitle: true,
+                centerText: true,
+                overlayPlayButton: true
             });
             break;
 
